@@ -31,35 +31,38 @@
 };
 // 第二种 快慢指针
 const isPalindrome2 = (head) => {
-    if (head == null || head.next == null) {
-      return true;
-    }
-    let fast = head;
-    let slow = head;
-    let prev;
-    while (fast && fast.next) {
+  let fast = head;
+  let slow = head;
+  let prev = new ListNode();
+ //  快慢指针移动 可以画图看 比如说 1 2 3 3 2 1  
+ // 最后 prev 在 第一个3；slow在第二个3； fast在null
+  while(fast && fast.next){
       prev = slow;
       slow = slow.next;
       fast = fast.next.next;
-    }
-    prev.next = null;  // 断成两个链表
-    // 翻转后半段
-    let head2 = null;
-    while (slow) {
-      const tmp = slow.next;
-      slow.next = head2;
-      head2 = slow;
-      slow = tmp;
-    }
-    // 比对
-    while (head && head2) {
-      if (head.val != head2.val) {
-        return false;
-      }
-      head = head.next;
-      head2 = head2.next;
-    }
-    return true;
+  }
+ //  反转后半部分链表 注意要把prev和slow之间断开
+ prev.next = null;
+ // head2 是一个虚拟头结点
+ let head2 = null;
+ while(slow){
+     const next = slow.next;
+     slow.next = head2;
+     head2 = slow;
+     slow = next;
+ }
+
+
+ // 比较反转后的链表
+ while(head && head2){
+     if(head.val !== head2.val){
+         return false;
+     }
+     head = head.next;
+     head2 = head2.next;
+
+ }
+ return true;
   };
   
    
