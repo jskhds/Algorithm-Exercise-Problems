@@ -28,4 +28,4 @@ var wiggleMaxLength1 = function(nums) {
          }
     }
     return result;
-};
+}; 
