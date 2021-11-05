@@ -1,2 +1,3 @@
-let dp = new Array(2).fill([0,0]);
-console.log(dp);
+points =[[1,9],[7,16],[2,5],[7,12],[9,11],[2,10],[9,16],[3,9],[1,3]]
+points.sort((a, b) => a[0] === b[0] ? a[1] - b[1] : a[0] - b[0])
+console.log(points);
