@@ -31,5 +31,9 @@ var removeElement1 = function(nums, val) {
             nums[slow++] = nums[fast];
          }
      }
+      
      return slow;
 };
+
+const res = removeElement1([1,2,3,4],1);
+console.log(res);
