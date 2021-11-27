@@ -41,6 +41,27 @@
     return res;
 };
 
+// bfs 层序遍历 从上到下 从左到右
+var levelOrder1 = function(root) {
+    let res = [];
+    if(!root) return res;
+   //  queue 存放每一层的值
+   let queue = [root];
+    while(queue.length>0){
+        let len = queue.length;
+        let list = [];
+       //  把同一层queue的每一个节点加进list的同时，要把这一层各个节点下一级的元素添加到queue
+       for(let i = 0;i<len;i++){
+           let curr = queue.shift();
+           list.push(curr.val);
+           curr.left&&queue.push(curr.left);
+           curr.right&&queue.push(curr.right); 
+       }
+       res.push(list);
+    }
+   return res;
+};
+
 
 
 
