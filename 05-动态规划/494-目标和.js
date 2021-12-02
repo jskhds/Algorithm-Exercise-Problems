@@ -18,6 +18,7 @@
 
     for(let  i = 0;i<nums.length;i++){
         for(let j = left;j>=nums[i];j--){
+            // 求装满背包有几种方法的转移方程
             dp[j] += dp[j - nums[i]];
         }
 

@@ -4,7 +4,7 @@
  * @return {number}
  */
  var maxProfit = function(prices, fee) {
-     if(prices.length < 1 ) return 0
+    if(prices.length < 1 ) return 0
     let len  = prices.length;
     let dp = Array.from(Array(prices.length), () => Array(2).fill(0));
     dp[0][0] -= prices[0];

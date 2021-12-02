@@ -12,7 +12,8 @@
 //  */
     // 一样是可以转化为01背包问题, 物品的大小就是str中0 1的数量, 所以背包有两个维度
     // 物品的价值就是子集数量的多少
-
+// 大体思路是这样的：首先我们先明确这是一个01背包问题，只是我们有两个背包，一个背包用来装最多m个0，一个背包用来装最多n个1
+// 然后外层正序遍历物品，从0开始， 内层倒序遍历背包，
     var findMaxForm = function(strs, m, n) {   
    
         const dp = Array.from(Array(m+1), () => Array(n+1).fill(0));
@@ -22,7 +23,7 @@
             zeroNum += strs[i].split('0').length - 1;
             oneNum += strs[i].split('1').length - 1;
     
-    // 再遍历背包容量 两个背包容量遍历顺序随意 倒序遍历即可
+    // 再遍历背包容量 两个背包容量遍历物品的顺序随意 倒序遍历即可
         for(let i = m;i>= zeroNum;i--){
             for(let j = n;j>=oneNum;j--){ 
                 dp[i][j] = Math.max(dp[i][j],dp[i-zeroNum][j-oneNum] + 1);
