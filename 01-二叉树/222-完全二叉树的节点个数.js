@@ -27,7 +27,7 @@ var countNodes = function(root) {
   let rightHeight = 0;
   let left = root.left;
   let right = root.right;
-  // 22-33 算满二叉树的节点数
+  //  算满二叉树的节点数
   while(left){
       left = left.left;
       leftHeight++;

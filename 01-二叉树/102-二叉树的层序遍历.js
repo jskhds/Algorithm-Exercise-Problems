@@ -41,7 +41,7 @@
     return res;
 };
 
-// bfs 层序遍历 从上到下 从左到右
+//  层序遍历 从上到下 从左到右
 var levelOrder1 = function(root) {
     let res = [];
     if(!root) return res;

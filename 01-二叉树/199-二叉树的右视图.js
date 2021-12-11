@@ -1,5 +1,5 @@
 
-    var rightSideView = function(root) {
+var rightSideView = function(root) {
    if(!root) return [];
    let res = [];
   res =  dfs(root,0,res);
