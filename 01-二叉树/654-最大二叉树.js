@@ -4,7 +4,7 @@
  */
  var constructMaximumBinaryTree = function(nums) {
     // 1.确定参数(传入一个数组)和返回值  
-    // 2.确定终止条件
+    // 2.确定终止条件 传入的数组只有一个数的时候，其实就是节点值
     let node = new TreeNode()
     if(nums.length === 1){
         node.val = nums[0]
@@ -27,3 +27,5 @@
     }
     return node
 };
+
+// 改进
