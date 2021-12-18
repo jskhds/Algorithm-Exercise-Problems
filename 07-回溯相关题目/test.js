@@ -1,46 +1,36 @@
-function isObejct(obj){ 
-    return typeof obj === "object" && obj !== null
-}
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+ var groupAnagrams = function(strs) {
+    if(strs.length<=1) return strs
+     res = []
+   for(let i = 0;i<strs.length;i++){
+       for(let j = i+1;j<strs.length;j++){
+           if(isAnagram(strs[i],strs[j])){
+               res[i].push(strs[j])
+           }
+       }
+   }
+    
+    return res
+};
 
-function isEqual(obj1,obj2){
-    if(!isObejct(obj1)&&!isObejct(obj2)){
-        return obj1 === obj2
-    }
-    if(obj1 === obj2){
-        console.log("test");
-        return true
-  }
-    const obj1List  = Object.keys(obj1)
-    const obj2List  = Object.keys(obj2)
-    if(obj1List.length !== obj2List.length){
-        return false
-    }
-    //  遍历
-    for(let key in obj1){
-        let res = isEqual(obj1[key],obj2[key])
-        if(!res ){
-            return false
+function isAnagram(a,b){      
+        if(a.length !== b.length) return false       
+        let len = 0
+        for(let i = 0;i<a.length;i++){
+            for(let j = 0;j<b.length;j++){
+                if(a[i] === b[j]){
+                    b[j] = 'A'
+                    len++
+                    continue
+                }
+            }
         }
-    }
-    return true
-}
-
-const obj1 = {
-    name: "zhangsan",
-    age: 18,
-    habit: {
-        h1: "basketball",
-        h2: "baking"
+        let  flag = len === a.length?true:false
+        return flag
     }
 
-}
-
-const obj2 = {
-    name: "zhangsan",
-    age: 18,
-    habit: {
-        h1: "basketball",
-        h2: "bakin"
-    }
-}
-console.log(isEqual(obj1,obj1));
+    let res = groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])
+    console.log(res);
