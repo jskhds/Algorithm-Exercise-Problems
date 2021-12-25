@@ -1,23 +1,21 @@
-// 1.扩展法
+// 回溯
 /**
  * @param {number[]} nums
  * @return {number[][]}
  */
  var subsets = function(nums) {
-    let len = nums.length;
-    let res =[];
-    if(len === 0){
-        return res;
-    }
-    res.push([]);
-    for(let i = 0; i < len ; i++){
-        res.push([nums[i]]);
-      
-        // for(let j = i + 1;j<len;j++){
-        //     res[i].push(nums[j])
-        // }
-    }
-    return res;
+    let res = []
+    let path = []
+   const backTracking = (startIndex,nums)=>{
+       res.push(path.slice())
+       for(let i = startIndex;i<nums.length;i++){
+           path.push(nums[i])
+           backTracking(i+1,nums)
+           path.pop()
+
+       }
+   }
+   
+   backTracking(0,nums)
+   return res
 };
-let res = subsets([1,2]);
-console.log(res);

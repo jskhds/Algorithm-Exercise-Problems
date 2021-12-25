@@ -20,8 +20,7 @@
 
      }
      
-    return res
+    return s.length + t.length - 2*res
 };
-let res = minDistance("abc",
-"ahbgdc")
+let res = minDistance("abc","ahbgdc")
 console.log(res);
