@@ -3,7 +3,6 @@ let arr = [7,9,1,5,10,20,30,0]
 function merge(arr, L, M, R){
     let leftArr = arr.slice(L, M)
     let rightArr = arr.slice(M, R+1)
-    // 注意这个地方 k = L 代表在原数组的索引从 L 开始
     let i = 0, j = 0, k = L
     while( i <leftArr.length && j <rightArr.length ){
         if(leftArr[i]<=rightArr[j]){
@@ -29,12 +28,15 @@ function mergeSort(arr,L,R){
     }
     else{
         let M = Math.floor((R+L)/2)
+        // 递归左边
         mergeSort(arr,L,M)
+        // 递归右边
         mergeSort(arr, M + 1,R)
+        // 递归到尽头合并
         merge(arr, L, M + 1, R)
     }
 
 }
- mergeSort(arr,0,7)
+ mergeSort(arr,0,arr.length)
  console.log(arr);
  
