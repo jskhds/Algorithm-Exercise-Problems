@@ -14,12 +14,14 @@ var generateMatrix = function(n) {
            
         }
         right--;
-        for(right;right>=left;right--){
-            arr[bottom][right] = nums++
+        for(let i = right;i>=left;i--){
+            arr[bottom][i] = nums++
         }
-        for(bottom;bottom<=top;bottom++){
-            arr[bottom][left] = nums++
+        bottom--;
+        for(let i = bottom;i>=top;i--){
+            arr[i][left] = nums++
         }
+        left++;
     }
     
     return arr;
