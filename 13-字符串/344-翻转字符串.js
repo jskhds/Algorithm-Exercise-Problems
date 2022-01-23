@@ -12,3 +12,4 @@
     
     return s;
 };
+console.log(reverseString("xfsaufh"));
