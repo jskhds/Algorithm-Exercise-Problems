@@ -4,25 +4,26 @@
 // 先是比较l1 和 l2 的大小，prev 指向小的那一个，因为小的那一个已经确定了位置，大的还没有，所以小的可以往下移动到自己的next
 // 大的留在原地，等next再和它比，确定位置，不管谁大谁小，prev指了之后，都要往下移动，这样才可以延长新链表的长度
 // 最后，可能有一个链表还有剩下的值，所以就用 prev.next = l1==null?l2:l1 来确定最后的值是什么
-var mergeTwoLists = function(l1,l2) {
-    let dummy = new ListNode(0)
-    let prev = dummy
-    while(l1!=null&&l2!=null){
-        if(l1.val<=l2.val){
-            // 如果l1.val 小于等于 l2.val 那么prev就指向 l1 然后l1 向下移动，作为和当前 l2 继续比较的值
-             prev.next = l1
-             l1 = l1.next
+function mergeTwoLists(a,b){
+    if(!a || !b) return a? a:b
+    let head = new ListNode(0)
+    let tail = head
+    let aPtr = a
+    let bPtr = b
+    while(aPtr && bPtr){
+        if(aPtr.val <= bPtr.val){
+            tail.next = aPtr
+            aPtr = aPtr.next
         }else{
-            // 和上面是一个意思
-            prev.next = l2
-            l2 = l2.next
+            tail.next = bPtr
+            bPtr = bPtr.next
         }
-        prev = prev.next
-
+        // 把 tail 往下移动
+        tail = tail.next
     }
-    prev.next = l1==null?l2:l1
-    return dummy.next
-};
+    tail.next = aPtr? aPtr:bPtr
+    return head.next
+}
 // 递归法
 var mergeTwoLists = function(l1,l2) {
     // 递归
