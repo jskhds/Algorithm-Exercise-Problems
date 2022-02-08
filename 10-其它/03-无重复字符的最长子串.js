@@ -5,21 +5,15 @@ var lengthOfLongestSubstring = function(s) {
     let k = 0;
     let ans = 0;    
     for(right = 0; right<s.length; right++){
-
         for(k = left; k < right; k++){
             if(s[k] == s[right]){
                 left = k+1;
                 break;
             }
         }
-
-
         if(right-left + 1 > ans)
         ans = right-left + 1;
         }
-
-
-
         return ans;
            
         
@@ -37,3 +31,23 @@ var lengthOfLongestSubstring = function(s) {
  */
  const a = lengthOfLongestSubstring("abdabc");
  console.log(a);
+
+
+//  解法 2 加了一个 map其实还是暴力解法 还有优化的空间
+ var lengthOfLongestSubstring = function(s) {
+    if(s.length <= 1) return s.length
+    let max = 0
+    let map = new Map()
+    let start = 0   
+    for(i = 0;i<s.length;i++){
+        if(!map.has(s.charAt(i))){          
+            map.set(s.charAt(i), 1)  
+            max = map.size>max?map.size:max
+        }else{
+            max = map.size>max?map.size:max
+            map.clear()  
+            i = start++      
+        }   
+    }
+    return max
+};
