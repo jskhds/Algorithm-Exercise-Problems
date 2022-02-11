@@ -28,3 +28,14 @@
     
     return dummy.next;
 };
+
+// 递归法  https://lyl0724.github.io/2020/01/25/1/
+var swapPairs = function(head) {
+    if(!head || !head.next){
+       return head;
+    }
+    let next = head.next;
+    head.next = swapPairs(next.next);
+    next.next = head
+    return next  
+};

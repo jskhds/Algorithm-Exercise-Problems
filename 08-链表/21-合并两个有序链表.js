@@ -6,8 +6,8 @@
 // 最后，可能有一个链表还有剩下的值，所以就用 prev.next = l1==null?l2:l1 来确定最后的值是什么
 function mergeTwoLists(a,b){
     if(!a || !b) return a? a:b
-    let head = new ListNode(0)
-    let tail = head
+    let dummy = new ListNode(0)
+    let tail = dummy
     let aPtr = a
     let bPtr = b
     while(aPtr && bPtr){
@@ -22,7 +22,7 @@ function mergeTwoLists(a,b){
         tail = tail.next
     }
     tail.next = aPtr? aPtr:bPtr
-    return head.next
+    return dummy.next
 }
 // 递归法
 var mergeTwoLists = function(l1,l2) {
