@@ -40,3 +40,16 @@ var invertTree2 = function(root) {
 
  
 };
+
+// 层序翻转
+var invertTree = function(root) {
+  if(root == null) return root;
+  let queue = [root];
+  while(queue.length){
+      const cur = queue.shift();
+      [cur.left, cur.right] = [cur.right,cur.left];
+      cur.left&&queue.push(cur.left);
+      cur.right&&queue.push(cur.right);
+  }
+  return root;
+};

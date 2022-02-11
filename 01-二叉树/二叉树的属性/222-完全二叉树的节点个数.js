@@ -1,6 +1,5 @@
   // 普通二叉树的方式 按层序遍历把节点都加进来 然后flat算长度
 var countNodes = function(root) {
-  
     let res = [];
     if(!root) return 0;
     let queue = [root];
@@ -15,11 +14,10 @@ var countNodes = function(root) {
             
         }
         res.push(list);
-    }
-    
+    } 
     return res.flat(2).length;
 };
-// 把完全二叉树分成一个有一个满二叉树的方法
+// 把完全二叉树分成一个又一个满二叉树的方法
 var countNodes = function(root) {
   // 满二叉树的办法
   if(!root) return 0;
@@ -27,7 +25,7 @@ var countNodes = function(root) {
   let rightHeight = 0;
   let left = root.left;
   let right = root.right;
-  //  算满二叉树的节点数
+  //  算二叉树的节点数
   while(left){
       left = left.left;
       leftHeight++;
@@ -36,7 +34,7 @@ var countNodes = function(root) {
       right = right.right;
       rightHeight++;
   }
-  
+//   如果是满二叉树 那么高度相等 返回高度
   if(leftHeight===rightHeight){
       return Math.pow(2,leftHeight+1)-1;
   }
