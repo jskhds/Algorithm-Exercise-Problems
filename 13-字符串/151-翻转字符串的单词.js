@@ -36,7 +36,7 @@
      }
    }
  
-   // 移除末尾空格
+   // 移除末尾空格 slow最后是整个arr的长度
    arr.length = arr[slow - 1] === ' ' ? slow - 1 : slow;
  }
  
@@ -44,7 +44,6 @@
  function reverse(arr, start, end) {
    let left = start;
    let right = end;
- 
    while(++left<--right){
     [arr[left],arr[right]] = [arr[right],arr[left]];
 }

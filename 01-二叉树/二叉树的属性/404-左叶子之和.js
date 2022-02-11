@@ -40,3 +40,23 @@ var sumOfLeftLeaves1 = function(root) {
 //    注意这个 return 也是在递归里的 图在草稿 156-157
     return   leftValue + rightValue + midValue
 };
+
+
+// 递归法
+var sumOfLeftLeaves = function(root) {
+    if(!root) return 0;
+    const helper = (root,isLeftTree)=>{
+         if(!root) return 0;
+         if(!root.left && !root.right){
+             if(isLeftTree){
+                 return root.val
+             }else{
+                 return 0;
+             }
+         }
+         return helper(root.left,true) + helper(root.right, false)
+          
+     }
+    return  helper(root, false)
+
+};
