@@ -21,8 +21,7 @@ const isSymmetric = (root) => {
     if (root == null) return true; 
   
     const queue = [];
-    queue.push(root.left, root.right);  // 起初入列两个子树
-  
+    queue.push(root.left, root.right);  // 起初入列左右节点
     while (queue.length) {  // 队列清空就结束，没有节点可入列了
       const levelSize = queue.length; // 当前层的节点个数
       for (let i = 0; i < levelSize; i += 2) { // 当前层的节点成对出列

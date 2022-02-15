@@ -25,3 +25,21 @@
 
 
 // 递归
+var isValidBST = function(root) {
+    //  递归
+    let pre = null;
+    const inorder = (root)=>{
+        // 注意要用中序遍历
+        if(root == null) return true;  
+        // 访问左子树
+        let left = inorder(root.left);
+        // 处理当前节点
+        if(pre !== null && pre.val >= root.val) 
+            return false;
+        pre = root;
+        // 需要继续处理右子树
+        let right = inorder(root.right);
+        return right&&left;
+    }
+    return inorder(root);
+};

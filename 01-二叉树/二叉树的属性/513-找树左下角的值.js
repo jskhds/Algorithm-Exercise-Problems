@@ -21,3 +21,7 @@ var findBottomLeftValue = function(root) {
      
     return res 
 };
+
+
+// 递归法 
+// 先找到最大深度，最大深度的第一个就是答案

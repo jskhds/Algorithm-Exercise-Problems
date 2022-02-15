@@ -1,31 +1,21 @@
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-// 在递归的时候比
+// 在递归的时候比，另起节点
 // 我们在新起节点的时候，声明为 null就行
- var getMinimumDifference = function(root) {
-    let res = Infinity
-    let pre = null
-    function inOrder(root){
-       if(root == null) return 
-       inOrder(root.left)
-       if(pre != null){
-           res = Math.min(res,root.val - pre.val)
-       }
-       pre = root
-       inOrder(root.right)
+var getMinimumDifference = function(root) {
+    // 辅助数组
+    let res =Infinity;  
+    let pre = null;
+    const inorder = (root) =>{
+        if(!root) return;
+        inorder(root.left);
+        if(pre !== null){
+            res = Math.min(Math.abs(root.val - pre.val), res);
+        }
+        pre = root;  // per 和 root 是按照中序遍历的顺序在动的，比如说示例 1 [1, 2, 3, 4, 6]pre 先是 null root 是 1，接下来就是 pre = 1, root = 2; pre = 2, root = 3;
+        inorder(root.right);
     }
-   inOrder(root)
-   return res
+   inorder(root);
+   return res;
+    
 };
 // 放到数组里面比
 var getMinimumDifference = function(root) {
