@@ -28,4 +28,22 @@
     return node
 };
 
-// 改进
+// 自己写的，我每次遍历都是从头到尾，其实可以每次用左右指针来限制范围，但我觉得没什么必要
+var constructMaximumBinaryTree = function(nums) {
+    const recursion = (nums) => {
+        if(!nums.length) return null;
+        let maxNum = nums[0];
+        let index;
+        for( let i = 0;i<nums.length;i++){
+            if(maxNum <= nums[i]){
+                maxNum = nums[i];
+                index = i;
+            }
+        }
+        let root = new TreeNode(maxNum);
+        root.left = recursion(nums.slice(0, index));
+        root.right = recursion(nums.slice(index + 1));
+        return root;
+    }
+    return recursion(nums)
+};

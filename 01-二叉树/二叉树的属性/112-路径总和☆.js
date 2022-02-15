@@ -1,5 +1,5 @@
 
-
+// 缩略版
 var hasPathSum = function(root, sum) {
     if(root == null) return false
     if(root.left == null && root.right == null){
