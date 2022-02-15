@@ -1,20 +1,41 @@
-var lowestCommonAncestor = function(root, p, q) {
-    // 节点为空 或者 等于 p 或者等于 q 直接返回当前节点
-     if(root == null || root === p|| root === q) return root
-    //  不满足以上条件 说明要继续往下走 先递归左子树
-    let left = lowestCommonAncestor(root.left,p,q)
-    //再递归右子树
-    let right = lowestCommonAncestor(root.right,p,q)
-    // 如果说 既不在左子树也不在右子树 返回空
-    if(!left && !right) return null
-    // 不在左子树  在右子树 返回右节点
-    if(!left && right) return right
-    // 不在右子树在左子树 返回左节点
-    if(!right && left) return left
-    // 都不在 返回 root
-    return root
-      
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+ var lowestCommonAncestor = function(root, p, q) {
+    // 自下而上地找，适合后序遍历，后序遍历最先处理的一定是叶子节点
+    // 终止条件 要么找到了，要么为空
+    if(root == null || root === p || root === q) return root;
+    // 先在左子树找有没有它们的祖先
+    let left = lowestCommonAncestor(root.left, p, q);
+    // 再在右子树找有没有它们的祖先
+    let right = lowestCommonAncestor(root.right, p, q);
 
-
-
+    // 判断
+    // 如果左子树也有它们的祖先，右子树也有它们的祖先，说明 root 就是它们深度最深的公共祖先
+    if(left && right){
+        return root;
+    }
+    if(!left && !right){
+        return null;
+    }
+    if(!left){
+        return right;
+    }
+    if(!right){
+        return left;
+    }
 };
+/**
+ 
+ */
+// https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/c-jing-dian-di-gui-si-lu-fei-chang-hao-li-jie-shi-/
