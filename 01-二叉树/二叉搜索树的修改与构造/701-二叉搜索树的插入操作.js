@@ -1,10 +1,10 @@
 /**
- * 
- * @param {*} root 
- * @param {*} val 
- * @returns 
- * 如果画图看的话，其实这个递归函数只是记录了要把值插入到什么地方，结束的时候是没有返回值的，直接结束递归
+ * 给定二叉搜索树（BST）的根节点 root 和要插入树中的值 value ，将值插入二叉搜索树。 
+ * 返回插入后二叉搜索树的根节点。 输入数据 保证 ，新值和原始二叉搜索树中的任意节点值都不同。
+*注意，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。 你可以返回 任意有效的结果 。
+
  */
+// 我们的插入方式只要找到符合条件空节点插入就行了，不用考虑重构搜索树的情况
 var insertIntoBST = function(root, val) {
     const helper = (root,val)=>{
          if(root == null){ // 1
@@ -25,20 +25,27 @@ var insertIntoBST = function(root, val) {
     helper(root,val)
     return root
 };
+
+
+
 // 简洁版
 var insertIntoBST = function(root, val) {
-    //  找到空节点就可以插入了
-    if(root == null){
-        let node = new TreeNode(val)
-        return node
+    if(!root){
+        // 这个地方的 return 要给上一级的接住，上一级过来的时候是 xxx.left = ? 或者 xxx.right = ?，返回的 new node 就是赋值给它们其中一个的
+        return new TreeNode(val);
     }
-    // 像这两句 其实只起到记录节点的功能 是没有返回值的
-    if(root.val>val) root.left = insertIntoBST(root.left,val)
-    if(root.val<val) root.right = insertIntoBST(root.right,val)
-    return root
+    if(root.val > val){
+        root.left = insertIntoBST(root.left, val);
+    }
+    if(root.val < val){
+        root.right = insertIntoBST(root.right, val);
+
+    }
+    return root;
 };
 
-// 迭代 不是很明白
+// 迭代  p 随着 cur 在走， cur 跟着 val 的大小在走
+// cur 走完后，就可以用 p.val 和 val 的大小来插入了
 var insertIntoBST = function(root, val) {
     if(root == null){
         root = new TreeNode(val)
