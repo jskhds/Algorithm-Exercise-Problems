@@ -9,8 +9,7 @@ var uniquePathsWithObstacles = function(obstacleGrid) {
         for(j=1;j<n;j++){
             // 碰到障碍 不赋值
            if(obstacleGrid[i][j]===1) continue;
-            dp[i][j] = dp[i-1][j] + dp[i][j-1];
-            
+            dp[i][j] = dp[i-1][j] + dp[i][j-1];     
         }
     }
     return dp[dp.length-1][dp[0].length-1];

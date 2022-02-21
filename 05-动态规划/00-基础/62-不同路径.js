@@ -1,14 +1,23 @@
-var uniquePaths = function(m, n) {
-    const arr= new Array(m).fill(0).map(() => new Array(n).fill(0));
-    // i是横坐标  j是纵坐标  
-   for(let i=0;i<m;i++) arr[i][0]=1;
-   for(let j=0;j<n;j++) arr[0][j]=1;
-   for (let i = 1; i < m; i++) {
-    for (let j = 1; j < n; j++) {
-        arr[i][j] = arr[i - 1][j] + arr[i][j - 1];
-    }
-}
-return arr[m - 1][n - 1];
+/**
+ * 
+ * @param {*} m 
+ * @param {*} n 
+ * @returns 
+ * 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。
+ * 机器人每次只能向下或者向右移动一步。
+ * 机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。
+ * 问总共有多少条不同的路径？
+ */
+
+ var uniquePaths = function(m, n) {
+  let dp = new Array(m).fill(1).map(()=>new Array(n).fill(1));
+  // 最左边 一种 最上面 一种
+  for(let i = 1;i<m;i++){
+      for( let j = 1;j<n;j++ ){
+          dp[i][j] = dp[i-1][j] + dp[i][j-1] ;
+      }   
+  }
+  return dp[m-1][n - 1];
 };
 
 

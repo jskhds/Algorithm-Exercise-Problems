@@ -3,17 +3,16 @@
  * @return {number}
  */
  var minCostClimbingStairs = function(cost) {
-    //  爬上第 i 阶台阶对应的花费 爬上最后一阶不用花费
-    const dp = [];
-    //初始化
+    const len = cost.length;
+    // dp[i] 爬到第 i 层所需要的最小花费
+    let dp = new Array(len);
     dp[0] = cost[0];
     dp[1] = cost[1];
-    // 递推公式 找出爬到顶层的最小花费
-    for(i=2;i<cost.length;i++){
-        dp[i] = Math.min(dp[i-1],dp[i-2]) + cost[i];
+    for(let i = 2; i<len; i++){
+        // 走到第 i 个台阶就必须付出 cost[i]， 跨过去则不用付出
+        // 要么从 dp[ i - 1] 走到，要么从 dp[i -2]走到，反正踩到第 i 阶上了，就要付出 cost[i]
+        dp[i] = Math.min(dp[i - 1] + cost[i] , dp[i - 2] + cost[i] );
+        console.log(dp[i]);
     }
-   
-    return dp;
+    return Math.min(dp[len - 1], dp[len - 2]);
 };
-const res = minCostClimbingStairs([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]);
-console.log(res);
