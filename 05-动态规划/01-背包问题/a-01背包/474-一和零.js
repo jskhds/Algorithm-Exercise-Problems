@@ -14,22 +14,24 @@
     // 物品的价值就是子集数量的多少
 // 大体思路是这样的：首先我们先明确这是一个01背包问题，只是我们有两个背包，一个背包用来装最多m个0，一个背包用来装最多n个1
 // 然后外层正序遍历物品，从0开始， 内层倒序遍历背包，
-    var findMaxForm = function(strs, m, n) {   
-   
-        const dp = Array.from(Array(m+1), () => Array(n+1).fill(0));
-    // 先遍历物品 也就是数组元素 算出一个元素里有几个0 几个1 
-        for(let i = 0;i<strs.length;i++){
-            var oneNum = 0, zeroNum = 0;    
-            zeroNum += strs[i].split('0').length - 1;
-            oneNum += strs[i].split('1').length - 1;
-    
-    // 再遍历背包容量 两个背包容量遍历物品的顺序随意 倒序遍历即可
-        for(let i = m;i>= zeroNum;i--){
-            for(let j = n;j>=oneNum;j--){ 
-                dp[i][j] = Math.max(dp[i][j],dp[i-zeroNum][j-oneNum] + 1);
-            }
+var findMaxForm = function(strs, m, n) {
+    /**
+    m和n是两个维度上考量的一个背包，每个物品的value就是每个字符串的个数，就是 1
+    每个物品的重量(数量)就是字符串里有多少个 0 和 多少个 1
+     */
+  
+    let dp = new Array(m + 1).fill(0).map(()=>new Array(n + 1).fill(0));
+    for(let i = 0;i<strs.length;i++){
+        // 每次计算 0 1 数量都要置零重新算
+        let zeroNum = 0;
+        let oneNum = 0;
+        zeroNum += strs[i].split('0').length - 1; 
+        oneNum += strs[i].split('1').length - 1;      
+    for(let i = m;i>=zeroNum;i--){
+        for(let j = n;j>=oneNum;j--){
+            dp[i][j] = Math.max(dp[i][j],dp[i-zeroNum][j-oneNum] + 1)
         }
-        
-        }
-        return dp[m][n];
-    };
+    } 
+    }
+    return dp[m][n];
+};
