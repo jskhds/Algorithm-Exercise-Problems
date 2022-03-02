@@ -2,6 +2,7 @@
  * @param {number[]} prices
  * @return {number}
  */
+// 因为存在多次买卖，所以有之前的状态
  var maxProfit = function(prices) {
     //  动规
         let len = prices.length;

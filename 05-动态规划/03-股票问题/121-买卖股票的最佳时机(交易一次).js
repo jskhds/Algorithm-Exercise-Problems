@@ -8,7 +8,7 @@
  * @param {number[]} prices
  * @return {number}
  */
-
+    // 这是最基本的题，但是要注意第一次买入时不存在前一天的操作
      var maxProfit = function(prices) {
         //  动规
         let len = prices.length;

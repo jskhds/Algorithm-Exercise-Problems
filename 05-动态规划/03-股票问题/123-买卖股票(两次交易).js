@@ -4,7 +4,7 @@
  */
  var maxProfit = function(prices) {
     // 一共有5个状态 
-    // 0 没有操作 1 第一次买入 2 第一次卖出 3 第二次买入 4 第二次卖出
+    // 0 没有操作 1 第一次买入 2 第一次卖出 3 第二次买入 4 第二次卖出，也很简单
         let len = prices.length;
         let dp = new Array(len).fill(0).map(x => new Array(5).fill(0));
         dp[0][1] = -prices[0];
