@@ -19,45 +19,41 @@ var rob = function(root) {
     return Math.max(val1,val2)
 };
 
+
 // 记忆递归 用map
 
-var rob1 = function(root) {
-    let map = new Map() //map要单独拿出来，不要放在递归里面
-    const memoRob= (root)=>{
-    if(root == null) return 0; //1
-    
-    if(map.has(root)) return map.get(root)
-    let val1 = root.val//3
-     
-    if(root.left) val1 += memoRob(root.left.left) + memoRob(root.left.right)//4
-    if(root.right) val1 += memoRob(root.right.left) + memoRob(root.right.right)//5
-    // 不偷当前父节点
-    let val2 = memoRob(root.left) + memoRob(root.right)//6
-    map.set(root,Math.max(val1,val2))
-    return Math.max(val1,val2)
-     }
-    
-    return memoRob(root)
+var rob = function(root) {
+  let map = new Map();
+  // 记忆化递归法 加一个 map （就多两行代码，到每一个 root 都判断一下 map 里有没有，算完一个之后map set 一个）后序遍历
+  const helper = (root)=>{
+      if(!root) return 0;
+      if(!root.left && !root.right) return root.val;
+      if(map.has(root)) return map.get(root);
+      // 偷父节点的话，就只能越级往下偷
+      let val1 = root.val; // 先把父节点包含起来
+      if(root.left) val1 += helper(root.left.left) + helper(root.left.right);
+      if(root.right) val1 += helper(root.right.left) + helper(root.right.right);
+      // 不偷父节点
+      let val2 = helper(root.left) + helper(root.right);
+      map.set(root, Math.max(val1,val2));
+      return Math.max(val1, val2);
+  }
+  
+  return helper(root);
+
 };
 
-// 动规解法
-const rob = (root) => {
-
-    const helper = (root) => {
-    //   dp[a,b] dp[0]不偷该节点的最大值，dp[1]偷该节点的最大值
-    if (root == null) return [0, 0]; //1
-    // 后序遍历：左右中
-  
-      const left = helper(root.left);
-      const right = helper(root.right);
-  
-      robExcludeRoot = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
-      robIncludeRoot = root.val + left[0] + right[0];
-  
-      return [robExcludeRoot, robIncludeRoot];
-    };
-  
-    const res = helper(root);
-  
-    return Math.max(res[0], res[1]);
-  };
+var rob = function(root) {
+  // 动态规划
+  // dp[0],dp[1]分别代表不偷父节点 和 偷父节点所得到的金额
+  const helper = (root)=>{
+      if(!root) return [0,0];
+      let left = helper(root.left);
+      let right = helper(root.right);
+      let unStealP = Math.max(left[0],left[1]) + Math.max(right[0],right[1]);
+      let stealp =  root.val +left[0] + right[0];
+      return [unStealP, stealp];
+  }
+  const res = helper(root);
+  return Math.max(...res);
+};

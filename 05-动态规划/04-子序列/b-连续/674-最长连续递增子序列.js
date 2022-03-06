@@ -3,6 +3,7 @@
  * @return {number}
  */
 // 动态规划 只需要考虑前一个状态就可以了
+// 连续的比较简单
  var findLengthOfLCIS = function(nums) {
     if(nums.length === 0) return 0
     let dp = new Array(nums.length).fill(1)

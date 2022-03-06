@@ -18,7 +18,7 @@
     dp[0] = 1;
     for(let i = 0;i<coins.length;i++){
         for(let j = coins[i];j<=amount;j++){
-            // 求有多少种组合时 转移方程的形式都类似这样
+            // 求有多少种组合时 转移方程的形式都类似这样 不要理解错 += 的意思了
             dp[j] += dp[j - coins[i]];
         }
     }

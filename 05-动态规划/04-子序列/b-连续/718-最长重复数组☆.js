@@ -30,7 +30,7 @@ var findLength1 = function(nums1, nums2) {
     let len2 = nums2.length
     let res = 0
     // dp[i][j] 由 dp[i-1][j-1] 推导出来 所以遍历要从 i = 1 j = 1 开始
-    // 所以dp[i][j] 的定义为 以 i - 1 和 j - 1 为下标的元素最长重复字符串的长度
+    // dp[i][j] 的定义为 以 i - 1 和 j - 1 为下标的元素最长重复字符串的长度
     let dp = new Array(len1 + 1).fill(0).map(x=>new Array(len2 + 1).fill(0))
     for(let i = 1;i<=len1;i++){
         for(let j = 1;j<=len2;j++){
@@ -38,7 +38,7 @@ var findLength1 = function(nums1, nums2) {
                 dp[i][j] = dp[i-1][j-1] + 1
             }
 
-            res =  dp[i][j]>res? dp[i][j]:res
+            res =  Math.max(res,dp[i][j])
         }
     }
     
