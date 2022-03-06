@@ -1,5 +1,6 @@
 // 输入：s = "abc", t = "ahbgdc"
 // 输出：true
+// 
 var isSubsequence1 = function(s, t) {
     let flag = false
     let res = 0
@@ -44,7 +45,7 @@ var isSubsequence2 = function(s, t) {
     return flag
 }
 
-//  贪心
+//  双指针
 var isSubsequence3 = function(s, t) {
     let [m,n] = [s.length,t.length]
     let i = 0,j = 0

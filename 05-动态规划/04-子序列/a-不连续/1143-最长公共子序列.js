@@ -7,7 +7,7 @@
  * @return {number}
  */
  var longestCommonSubsequence = function(a, b) {
-     
+    //  dp[i][j] 0到i-1 和0到j-1的最长公共子序列
     let dp = new Array(a.length + 1 ).fill(0).map(x=>new Array(b.length + 1).fill(0))
     let res = 0
     for(let i = 1;i<=a.length;i++){
@@ -17,17 +17,14 @@
             }
             else{
                 // 最主要是这个不相等的情况
+                // 如果a[i] b[j]不相等的话，就看 要么看a的前一个和当前b的值，要么看b的前一个和当前a 的值。
                 dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1])
             }
-            res = Math.max(res,dp[i][j])
+           
         }
     }
     return res
 };
- 
-
- 
-
 let res = longestCommonSubsequence1("abcde","ace")
 console.log(res);
  
