@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <!-- 让input和p的值绑定 -->
+        <input type="text" name="" id="text_id">
+        <p id="p_id"></p>
+    </div>
+    
+    
+    <script >
+/**
+ * 简单的双向绑定*/
+    var xx_obj = {};
+    Object.defineProperty(xx_obj, 'xx_val',{
+    get:function(){
+        console.log('get');
+        return 123
+      },
+      set:function(val){
+        //  set拿到val之后就可以给input p赋值了
+        document.getElementById("text_id").value = val;
+        document.getElementById("p_id").innerHTML = val;
+      }
+  });
+    //写入时触发set
+    // xx_obj.xx_val = 123;
+    //读取数据时触发 get 如果get没有返回值的话 会出现一个undefined值
+    // console.log(xx_obj.xx_val);
+
+
+document.addEventListener('keyup',function(e){
+    // console.log(e.target.value);
+    // 这一步是写入xx_val的值 所以会触发set 同时e.target.value的值也传入了set里 
+    xx_obj.xx_val = e.target.value;
+})
+    
+
+    
+
+    </script>
+</body>
+</html>

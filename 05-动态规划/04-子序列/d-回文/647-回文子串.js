@@ -11,6 +11,10 @@ var countSubstrings = function(s){
     let res = 0
     for(let i = s.length-1;i>=0;i--){
         for(let j = i;j<s.length;j++){
+            // s[i]===s[j] 的情况，要么i和j相等，比如说 'a' 是回文子串
+            // 如果 j-i = 1; 'aa' 也是回文子串
+            // 其它情况，需要判断 dp[i+1][j-1] 是不是 true
+            // 由于需要从 dp[i+1][j-1]推出来，所以遍历顺序为 倒序加顺序，可以画一个图，dp[i+1][j-1] 在 dp[i][j] 的左下角
             if(s[i]===s[j] &&(j-i<=1||dp[i+1][j-1])){              
                     res++
                     dp[i][j] = true

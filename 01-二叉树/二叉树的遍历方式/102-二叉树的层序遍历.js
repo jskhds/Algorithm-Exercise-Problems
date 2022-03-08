@@ -46,7 +46,7 @@ var levelOrder1 = function(root) {
     let res = [];
     if(!root) return res;
    //  queue 存放每一层的值
-   let queue = [root];
+    let queue = [root];
     while(queue.length){
         let len = queue.length;
         let list = [];

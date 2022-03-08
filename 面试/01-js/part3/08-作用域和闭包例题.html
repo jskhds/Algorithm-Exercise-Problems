@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建10个 a 标签，点击弹出相应索引
+         // 创建10个 a 标签，点击弹出相应索引 
+   // 考点在于 如果 i 在 外部声明而不是for循环里面声明 那么最后i的值就一直是 10 
+   // 因为遍历创建 a 标签的速度很快 i又是全局变量 所以一下就加完了，但是事件不是同步任务，需要点击才能触发，所以当我们点击 a 标签的时候，i 已经变成 10 了 只有把 i 放到块级作用域里，才能和alert事件同步。因为每遍历一次，i会开辟一个新的作用域，在alert的时候，就在对应作用域里找 i 是多少 
+        let a 
+        for(let i = 0;i<10;i++){
+            a = document.createElement('a')
+            a.innerHTML = i + '<br>'
+            a.addEventListener('click',function(e){
+                e.preventDefault()
+                alert(i)
+            })
+            document.body.appendChild(a)
+        }
+    </script>
+</body>
+</html>

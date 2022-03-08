@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水平居中</title>
+    <style>
+         .container{
+              
+             background-color: #9dd3a8;
+             margin: 10px;
+             padding: 10px;
+             width: 500px;
+             height: 50px;
+         }
+         .item{
+             background-color: #fdc4b6;
+             text-align: center;
+              
+         }
+         .container-1{
+             text-align: center;
+         }
+         .container-2 .item{
+            width: 100px;
+            margin: auto;
+         }
+         .container-3{
+             position: relative; 
+         }
+         .container-3 .item{
+             position: absolute;
+             width: 300px;
+             left: 50%;
+             margin-left: -150px;
+         }
+    </style>
+</head>
+<body>
+    <div class="container container-1">
+        <span class="item">
+            inline元素
+        </span>
+    </div>
+
+    <div class="container container-2 ">
+        <div class="item">
+            block元素
+        </div>
+    </div>
+
+    <div class="container  container-3">
+        <div class="item">
+            absolute元素
+        </div>
+    </div>
+</body>
+</html>

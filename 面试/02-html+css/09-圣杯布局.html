@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            min-width: 550px;
+        }
+        .header{
+            text-align: center;
+            background-color: #f1f1f1;
+        }
+        .container{
+            /* padding 给左右两个盒子留出宽度 */
+            padding-left: 200px ;
+            padding-right: 150px
+        }
+        .center{
+            background-color: #ccc;
+            width: 100%;
+
+        }
+        .left{
+            /* left position设置relative margin-left设置本身宽度的负值 */
+            position: relative;
+            background-color: yellow;
+            width: 200px;
+            margin-left: -200px;
+        }
+        .right{
+            /* margin-right设置本身宽度的负值 */
+            background-color: pink;
+            width: 150px;
+            margin-right: -150px;
+        }
+        .footer{
+            /* 给container里的元素设置了浮动会导致footer浮上来 所以需要设置clear：both清除浮动 */
+            /* clear: both; */
+            text-align: center;
+            background-color: #f1f1f1;
+        }
+        .column{
+            float: left;
+        }
+        /* 比如说圣杯布局 不给foot单独加去浮动的话，可以给container加这个清除浮动 不影响后面的元素 */
+        .clearfix::after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">header</div>
+    <div class="container clearfix">
+        <div class="left column">left</div>
+        <div class="center column">center</div>
+        <div class="right column">right</div>
+    </div>
+    <div class="footer">footer</div>
+</body>
+</html>

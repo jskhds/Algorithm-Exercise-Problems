@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 20px;
+        }
+        .float-left{
+            float: left;
+        }
+        .clearfix::after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+        .container{
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .container .item{
+            width: 100px;
+            height: 100px;
+        }
+        .container .border-blue{
+            border: 1px solid blue;
+        }
+        .container .border-red{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <p>marigin top bottom 为负值的情况</p>
+    <div class="container">
+        <!-- 设置top 负值 item1自己往上移动 设置bottom负值 item2往上移动-->
+        <div class="item border-blue" style="margin-top: -20px;">
+            this is item1
+        </div>        
+        <div class="item border-red">
+            this is item2
+        </div>
+    </div>
+    <p>marigin left right 为负值的情况</p>
+    <div class="container clearfix">
+         <!-- 设置left 负值 item1自己往左移动 设置right负值 item2往左移动-->
+        <div class="item border-blue float-left" style="margin-left: -20px;">
+            this is item3
+        </div>        
+        <div class="item border-red float-left">
+            this is item4
+        </div>
+    </div>
+</body>
+</html>

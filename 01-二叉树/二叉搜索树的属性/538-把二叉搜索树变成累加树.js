@@ -11,14 +11,15 @@
  * @return {TreeNode}
  */
  var convertBST = function(root) {
-    let pre = 0
-    const helper = (root)=>{
-    if(root == null) return  
-    helper(root.right)
-    root.val += pre
-    pre = root.val
-     helper(root.left)
-    }
-    helper(root)
-    return root
+    // 中序遍历倒过来
+    let pre = 0;
+    const reverInorder = (root) =>{
+        if(!root) return null;
+        reverInorder(root.right);
+        root.val += pre;
+        pre = root.val;
+        reverInorder(root.left);
+        return root;
+    } 
+    return reverInorder(root);
 };

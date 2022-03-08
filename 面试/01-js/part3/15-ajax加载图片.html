@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const url1 = '/image/xiaoxin.jpg'
+        const url2 = '/image/scene.jpg'
+        // new Promise格式分析
+        function loadImg(src) {
+        // 首先 return new Promise 也就是 Promise的一个实例
+        // 给这个实例传入的参数是函数（用箭头函数的形式<包括两个参数，一个resolve 一个 reject，这两个参数也是函数）
+    const res = new Promise(
+        (resolve,reject) => {
+            const img = document.createElement('img')
+            // img 加载完成以后执行 resolve函数
+            img.onload = () =>{
+                resolve(img)
+            }
+            img.onerror = ()=>{
+                const err = new Error(`图片加载失败${src}`)
+                reject(err)
+            }
+            img.src = src
+        
+    })
+    return res
+    
+}
+ loadImg(url1).then(img1=>{
+     console.log(img1.width);
+     return img1
+ }).then(img1=>{
+     console.log(img1.height);
+     return loadImg(url2)
+ }).then(img2=>{
+     console.log(img2.width);
+     return img2
+ }).then( img2=>{
+     console.log(img2.height);
+ }).catch(err=>{
+     console.error(err)
+ })
+    </script>
+</body>
+</html>

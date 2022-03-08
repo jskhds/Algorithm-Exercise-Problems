@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    这个示例 因为没有拷贝，所以student的引用始终是一样的，所以不管怎么添加，学生都不会改变
+    <div id = "app">
+    <form @submit.prevent = "insert">
+    <input v-model = "student.name">
+    <input v-model = "student.age">
+    <button>添加</button>
+    <ul v-for = "item in list">
+        <li>
+            名字：{{item.name}}
+            年龄：{{item.age}}
+        </li>
+    </ul>
+</form>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                student:{
+                    name:"",
+                    age: ""
+                },
+                list:[]
+
+            },
+            methods:{
+                insert(){
+                    this.list.push(this.student)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
