@@ -1,10 +1,6 @@
 /**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
+ * 用一个 pre 节点来记录前一个节点的值，反中序遍历累加即可
+ * 
  */
 /**
  * @param {TreeNode} root
@@ -23,3 +19,5 @@
     } 
     return reverInorder(root);
 };
+
+// 迭代

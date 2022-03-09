@@ -1,7 +1,5 @@
-// 在递归的时候比，另起节点
-// 我们在新起节点的时候，声明为 null就行
+// 在递归的时候比 
 var getMinimumDifference = function(root) {
-    // 辅助数组
     let res =Infinity;  
     let pre = null;
     const inorder = (root) =>{

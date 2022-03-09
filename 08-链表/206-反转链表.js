@@ -17,14 +17,8 @@
         currNode.next = prev;
         prev = curr;
         curr = next;
-    }
-    
-    return prev;
-
-    
-
-     
-     
+    }  
+    return prev;   
 };
 // 递归法
 var reverseList1 = function(head) {
